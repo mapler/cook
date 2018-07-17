@@ -1,0 +1,25 @@
+{% extends 'common/base.html' %}
+{% block sub_title %}
+Top
+{% endblock %}
+{% block content %}
+<div class="container">
+  <div class="page-header">
+    <h2 class="text-center">レシピを選びましょう</h2>
+  </div>
+  <div class="row">
+  {% for rid, recipe in recipes.items() %}
+    <div class="col-xs-18 col-sm-6 col-md-3">
+      <div class="thumbnail">
+        <div class="image_list"><img class="img-responsive" src="{{ url_for('static', filename='images/recipes' + recipe.image_url) }}"></div>
+        <div class="caption">
+          <h4>{{ recipe.name }}</h4>
+          <hr>
+          <a href="{{ url_for('ingredient', rid=rid) }}" class="btn btn-primary btn-sm" role="button">作りましょう</a>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+  </div>
+</div><!--/container -->
+{% endblock %}

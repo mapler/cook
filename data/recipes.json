@@ -1,0 +1,104 @@
+[
+  {
+    "id": 1,
+    "name": "ペペロンチーノ",
+    "level": 2,
+    "image_url": "/1/description.jpg",
+    "ingredient_image": "/1/ingredient.jpg",
+    "ingredients": [
+      {
+        "iid": 1,
+        "count": null,
+        "comment": null,
+        "weight": 100
+      },
+      {
+        "iid": 2,
+        "count": null,
+        "comment": null,
+        "weight": 10
+      },
+      {
+        "iid": 3,
+        "count": null,
+        "comment": null,
+        "weight": 150
+      },
+      {
+        "iid": 4,
+        "count": null,
+        "comment": null,
+        "weight": 30
+      },
+      {
+        "iid": 5,
+        "count": 1,
+        "comment": "みじん切り、または薄切り",
+        "weight": 5
+      },
+      {
+        "iid": 6,
+        "count": 1,
+        "comment": "半分に切って種を除く",
+        "weight": null
+      },
+      {
+        "iid": 2,
+        "count": null,
+        "comment": "少々(0.2g)",
+        "weight": null
+      },
+      {
+        "iid": 7,
+        "count": null,
+        "comment": "お好みで",
+        "weight": null
+      }
+    ],
+    "procedures": [
+      {
+        "step": 1,
+        "image": "/1/step/1.jpg",
+        "timer": null,
+        "description": [
+          "鍋に1リットルの水を入れて沸かす。",
+          "沸いたら次へ。"
+        ]
+      },
+      {
+        "step": 2,
+        "image": "/1/step/2.jpg",
+        "timer": 180,
+        "description": [
+          "パスタを茹でる。"
+        ]
+      },
+      {
+        "step": 3,
+        "image": "/1/step/3.jpg",
+        "timer": null,
+        "description": [
+          "パスタを茹でている間にフライパンにオリーブオイルをしき、弱火にかけ、",
+          "ニンニク、唐辛子をじっくりこがさないようにニンニクに色がつくまで炒める。"
+        ]
+      },
+      {
+        "step": 4,
+        "image": "/1/step/4.jpg",
+        "timer": null,
+        "description": [
+          "茹であがったパスタをフライパンに加えて中火にかけ、茹で汁をお玉1杯分弱を加えて混ぜて乳化させたら塩をふる。",
+          "味見をしつつお好みの塩加減にする"
+        ]
+      },
+      {
+        "step": 5,
+        "image": "/1/step/5.jpg",
+        "timer": null,
+        "description": [
+          "器に盛り、お好みでパセリをふる。"
+        ]
+      }
+    ]
+  }
+]

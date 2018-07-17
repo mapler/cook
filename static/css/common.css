@@ -1,0 +1,30 @@
+.image_list {
+  width: 250px;
+  height: 250px;
+  overflow:hidden;
+}
+.image_list img {
+  height: 100%;
+  min-width: 100%;
+  object-fit: cover;
+}
+.relative_parent {
+  position: relative;
+}
+.btn_over_parent {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.container-narrow {
+  margin: 0 auto;
+  max-width: 480px;
+}
+img.profile-image {
+    position: relative;
+    top: -5px;
+    float: left;
+    left: -5px;
+    width: 28px;
+    height: 28px;
+}

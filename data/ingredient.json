@@ -1,0 +1,44 @@
+[
+  {
+    "iid": 1,
+    "name": "水",
+    "unit": null,
+    "image": "/ingredient/1.jpg"
+  },
+  {
+    "iid": 2,
+    "name": "塩",
+    "unit": null,
+    "image": "/ingredient/2.jpg"
+  },
+  {
+    "iid": 3,
+    "name": "パスタ",
+    "unit": null,
+    "image": "/ingredient/3.jpg"
+  },
+  {
+    "iid": 4,
+    "name": "オリーブオイル",
+    "unit": null,
+    "image": "/ingredient/4.jpg"
+  },
+  {
+    "iid": 5,
+    "name": "ニンニク",
+    "unit": "片",
+    "image": "/ingredient/5.jpg"
+  },
+  {
+    "iid": 6,
+    "name": "唐辛子",
+    "unit": "本",
+    "image": "/ingredient/6.jpg"
+  },
+  {
+    "iid": 7,
+    "name": "パセリ",
+    "unit": null,
+    "image": "/ingredient/7.jpg"
+  }
+]
