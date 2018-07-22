@@ -4,19 +4,30 @@ Top
 {% endblock %}
 {% block content %}
 <div class="container">
-  <div class="page-header">
-    <h2 class="text-center">レシピを選びましょう</h2>
-  </div>
-  <div class="row">
+  <div class="py-5">
+  <h1 class="text-center">レシピを選びましょう</h1>
+  <hr>
+  <div class="card-deck">
   {% for rid, recipe in recipes.items() %}
-    <div class="col-xs-18 col-sm-6 col-md-3">
-      <div class="thumbnail">
-        <div class="image_list"><img class="img-responsive" src="{{ url_for('static', filename='images/recipes' + recipe.image_url) }}"></div>
-        <div class="caption">
-          <h4>{{ recipe.name }}</h4>
-          <hr>
-          <a href="{{ url_for('ingredient', rid=rid) }}" class="btn btn-primary btn-sm" role="button">作りましょう</a>
-        </div>
+    <div class="card w-50">
+      <img class="card-img-top" src="{{ url_for('static', filename='images/recipes' + recipe.image_url) }}">
+      <div class="card-body">
+        <h5 class="card-title">{{ recipe.name }}</h5>
+        <a href="{{ url_for('ingredient', rid=rid) }}" class="btn btn-primary">作りましょう</a>
+      </div>
+    </div>
+    <div class="card">
+      <img class="card-img-top" src="{{ url_for('static', filename='images/recipes' + recipe.image_url) }}">
+      <div class="card-body">
+        <h5 class="card-title">{{ recipe.name }}</h5>
+        <a href="{{ url_for('ingredient', rid=rid) }}" class="btn btn-primary">作りましょう</a>
+      </div>
+    </div>
+        <div class="card">
+      <img class="card-img-top" src="{{ url_for('static', filename='images/recipes' + recipe.image_url) }}">
+      <div class="card-body">
+        <h5 class="card-title">{{ recipe.name }}</h5>
+        <a href="{{ url_for('ingredient', rid=rid) }}" class="btn btn-primary">作りましょう</a>
       </div>
     </div>
   {% endfor %}

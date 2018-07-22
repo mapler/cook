@@ -1,59 +1,26 @@
-import json
-from typing import NamedTuple, List, Dict, Optional
-
+from threading import Lock
 from flask import Flask, render_template
+from flask_socketio import SocketIO
+from models import recipes
 app = Flask(__name__)
 
-
-class Ingredient(NamedTuple):
-    iid: int
-    name: str
-    unit: Optional[str]
-    image: str
+app.config['SECRET_KEY'] = 'secret!'
+socketio = SocketIO(app)
 
 
-with open('./data/ingredient.json') as f:
-    ingredients = {data['iid']: Ingredient(**data) for data in json.load(f)}
+thread = None
+thread_lock = Lock()
 
 
-class RecipeIngredient(NamedTuple):
-
-    iid: int
-    count: Optional[int]
-    weight: Optional[int]
-    comment: Optional[str]
-
-    @property
-    def ingredient(self):
-        return ingredients[self.iid]
-
-
-class Procedure(NamedTuple):
-    step: int
-    image: str
-    timer: Optional[int]
-    description: List[str]
-
-
-class Recipe(NamedTuple):
-    id: int
-    name: str
-    level: int
-    image_url: str
-    ingredient_image: str
-    ingredients: RecipeIngredient
-    procedures: List[Procedure]
-
-    @classmethod
-    def load(cls, d):
-        d['ingredients'] = [RecipeIngredient(**data) for data in d['ingredients']]
-        d['procedures'] = [Procedure(**data) for data in d['procedures']]
-        return cls(**d)
-
-
-with open('./data/recipes.json') as f:
-    recipes_data = json.load(f)
-    recipes = {data['id']: Recipe.load(data) for data in recipes_data}
+def background_thread():
+    while True:
+        socketio.sleep(1)
+        import time
+        import random
+        t = time.strftime('%M:%S', time.localtime())
+        socketio.emit('server_response',
+                      [{'type': 'button', 'data': 1}, {'type': 'weight', 'data': random.randint(0, 100)}],
+                      namespace='/test')
 
 
 @app.route('/')
@@ -94,5 +61,13 @@ def procedure(rid: int, step_id: int):
     return render_template('procedure.html', **context)
 
 
+@socketio.on('connect', namespace='/test')
+def test_connect():
+    global thread
+    with thread_lock:
+        if thread is None:
+            thread = socketio.start_background_task(target=background_thread)
+
+
 if __name__ == '__main__':
-    app.run()
+    socketio.run(app)
