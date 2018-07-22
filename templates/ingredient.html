@@ -10,6 +10,7 @@
     var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port + namespace);
     socket.on('server_response', function(res) {
     });
+    speech("材料の用意");
   });
 </script>
 {% endblock %}
