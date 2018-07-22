@@ -4,12 +4,11 @@ Top
 {% endblock %}
 {% block content %}
 <div class="container">
-  <div class="py-5">
   <h1 class="text-center">レシピを選びましょう</h1>
   <hr>
   <div class="card-deck">
   {% for rid, recipe in recipes.items() %}
-    <div class="card w-50">
+    <div class="card">
       <img class="card-img-top" src="{{ url_for('static', filename='images/recipes' + recipe.image_url) }}">
       <div class="card-body">
         <h5 class="card-title">{{ recipe.name }}</h5>
@@ -23,7 +22,7 @@ Top
         <a href="{{ url_for('ingredient', rid=rid) }}" class="btn btn-primary">作りましょう</a>
       </div>
     </div>
-        <div class="card">
+    <div class="card">
       <img class="card-img-top" src="{{ url_for('static', filename='images/recipes' + recipe.image_url) }}">
       <div class="card-body">
         <h5 class="card-title">{{ recipe.name }}</h5>
@@ -32,5 +31,5 @@ Top
     </div>
   {% endfor %}
   </div>
-</div><!--/container -->
+</div>
 {% endblock %}

@@ -1,5 +1,5 @@
 from threading import Lock
-from flask import Flask, render_template
+from flask import Flask, render_template, make_response, Response
 from flask_socketio import SocketIO
 from models import recipes
 app = Flask(__name__)
@@ -12,15 +12,11 @@ thread = None
 thread_lock = Lock()
 
 
-def background_thread():
+def get_weight():
     while True:
-        socketio.sleep(1)
-        import time
+        socketio.sleep(0.5)
         import random
-        t = time.strftime('%M:%S', time.localtime())
-        socketio.emit('server_response',
-                      [{'type': 'button', 'data': 1}, {'type': 'weight', 'data': random.randint(0, 100)}],
-                      namespace='/test')
+        socketio.emit('weight', random.randint(5, 100))
 
 
 @app.route('/')
@@ -61,12 +57,24 @@ def procedure(rid: int, step_id: int):
     return render_template('procedure.html', **context)
 
 
-@socketio.on('connect', namespace='/test')
+@app.route('/next', methods=['POST'])
+def next():
+    socketio.emit('next-btn')
+    return 'ok'
+
+
+@app.route('/reset', methods=['POST'])
+def reset():
+    socketio.emit('reset-btn')
+    return 'ok'
+
+
+@socketio.on('connect')
 def test_connect():
     global thread
     with thread_lock:
         if thread is None:
-            thread = socketio.start_background_task(target=background_thread)
+            thread = socketio.start_background_task(target=get_weight)
 
 
 if __name__ == '__main__':

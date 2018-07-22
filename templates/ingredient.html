@@ -6,12 +6,54 @@
 
 <script type="text/javascript" charset="utf-8">
   $(document).ready(function() {
-    namespace = '/test';
-    var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port + namespace);
-    socket.on('server_response', function(res) {
+    var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
+    var riElements = $('.ri-element');
+    var riElementNum = riElements.length;
+    var currentIdx = 0
+    var lastIdx = -1
+    socket.on('weight', function(weight) {
+      $('#weight').text(weight);
+    });
+    socket.on('next-btn', function() {
+      console.log('next-btn is pushed ' + currentIdx);
+      stopSpeech();
+      if (riElements[currentIdx] != null) {
+        // remove last element highlight
+        if (riElements[lastIdx] != null) {
+          $("#" + riElements[lastIdx].id).removeClass("bg-primary");
+        }
+        // speech ingredient
+        var element = $("#" + riElements[currentIdx].id);
+        if (element.data("weight") != "") {
+          speech(element.data("name") + element.data("weight") + "グラムを用意してください");
+        } else {
+          speech(element.data("name") + "を用意してください");
+        }
+        // hide description image if first
+        $("#ingredient-desc").hide();
+        // show current element hightlight and weight
+        $("#" + riElements[currentIdx].id).addClass("bg-primary");
+        $("#ingredient-weight").removeClass("d-none");
+        // update cursor index
+        lastIdx = currentIdx;
+        currentIdx ++;
+      } else if (currentIdx == riElementNum) {
+        window.location.href = "{{ url_for('procedure', step_id=current_step + 1, rid=recipe.id) }}";
+      }
+    });
+    socket.on('reset-btn', function() {
+      console.log('reset-btn is pushed ' + currentIdx);
     });
     speech("材料の用意");
+    showNextBtn();
+    $('#next-btn').click(function (event){
+      $.post("{{ url_for('next') }}");
+    });
+    $('#reset-btn').click(function (event){
+      $.post("{{ url_for('reset') }}");
+    });
   });
+
 </script>
 {% endblock %}
 {% block content %}
@@ -19,17 +61,15 @@
   <div class="py-3">
     <h4>ステップ {{ current_step }}/{{ max_step }}</h4>
     {% include "parts/progress.html" %}
-    <h3>材料の用意</h3>
+    <h2>材料の用意</h2>
     <hr>
   </div>
   <div class="row">
     <div class="col-sm my-auto">
-      <div id="ingredient-normal" class="d-none">
-      <h4 class="text-center">{{ recipe.name }}</h4>
-      <hr>
-      <img class="img-responsive" src="{{ url_for('static', filename='images/recipes' + recipe.ingredient_image) }}">
+      <div id="ingredient-desc" class="">
+      <img class="img-fluid mx-auto d-block" src="{{ url_for('static', filename='images/recipes' + recipe.ingredient_image) }}">
       </div>
-      <div id="ingredient-weigh" class="align-middle">
+      <div id="ingredient-weight" class="align-middle d-none">
       <h5 class="text-center">重さ</h5>
         <p class="display-3 text-center"><span id="weight">0</span>g</p>
       </div>
@@ -40,7 +80,7 @@
         <table class="table table-bordered table-sm">
           <tbody>
           {% for ri in recipe.ingredients %}
-            <tr id="ri-{{ ri.iid }}" class="">
+            <tr id="ri-{{ loop.index }}" class="ri-element" data-name="{{ ri.ingredient.name }}" data-weight="{{ ri.weight if ri.weight else '' }}">
               <td>{{ ri.ingredient.name }}</td>
               <td>{% if ri.weight or ri.count %}{{ ri.weight or ri.count }}{{ ri.ingredient.unit or 'g' }}{% endif %}</td>
               <td>{{ ri.comment or '' }}</td>
@@ -50,9 +90,6 @@
         </table>
       </div>
     </div>
-  </div>
-  <div class="row center-block">
-      <a href="{{ url_for('procedure', step_id=1, rid=recipe.id) }}" class="btn btn-primary text-center">次へ (debug)</a>
   </div>
 </div><!--/container -->
 {% endblock %}

@@ -5,3 +5,8 @@ function speech(text) {
     speechSynthesis.speak(ssu);
     console.log("Said: " + text);
 };
+
+
+function stopSpeech() {
+    speechSynthesis.cancel();
+}
