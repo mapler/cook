@@ -34,7 +34,7 @@
         "iid": 5,
         "count": 1,
         "comment": "みじん切り、または薄切り",
-        "weight": 5
+        "weight": 30
       },
       {
         "iid": 6,
@@ -58,45 +58,59 @@
     "procedures": [
       {
         "step": 1,
-        "image": "/1/step/1.jpg",
-        "timer": null,
-        "description": [
-          "鍋に1リットルの水を入れて沸かす。",
-          "沸いたら次へ。"
-        ]
+        "actions": [{
+          "image": "/1/step/1.jpg",
+          "timer": null,
+          "description": [
+            "鍋に1リットルの水を入れて沸かす。",
+            "沸いたら次へ。"
+          ]
+        }]
       },
       {
         "step": 2,
-        "image": "/1/step/2.jpg",
-        "timer": 180,
-        "description": [
-          "パスタを茹でる。"
+        "actions": [
+          {
+            "image": "/1/step/2.jpg",
+            "timer": 10,
+            "description": [
+              "パスタを茹でる。"
+            ]
+          },
+          {
+            "image": "/1/step/3.jpg",
+            "timer": null,
+            "description": [
+              "パスタを茹でている間にフライパンにオリーブオイルをしき、弱火にかけ、",
+              "ニンニク、唐辛子をじっくりこがさないようにニンニクに色がつくまで炒める。"
+            ]
+          }
         ]
       },
       {
         "step": 3,
-        "image": "/1/step/3.jpg",
-        "timer": null,
-        "description": [
-          "パスタを茹でている間にフライパンにオリーブオイルをしき、弱火にかけ、",
-          "ニンニク、唐辛子をじっくりこがさないようにニンニクに色がつくまで炒める。"
-        ]
-      },
-      {
-        "step": 4,
-        "image": "/1/step/4.jpg",
-        "timer": null,
-        "description": [
-          "茹であがったパスタをフライパンに加えて中火にかけ、茹で汁をお玉1杯分弱を加えて混ぜて乳化させたら塩をふる。",
-          "味見をしつつお好みの塩加減にする"
+        "actions": [
+          {
+            "image": "/1/step/4.jpg",
+            "timer": null,
+            "description": [
+              "茹であがったパスタをフライパンに加えて中火にかけ、",
+              "茹で汁をお玉1杯分弱を加えて混ぜて乳化させたら塩をふる。",
+              "味見をしつつお好みの塩加減にする"
+            ]
+          }
         ]
       },
       {
         "step": 5,
-        "image": "/1/step/5.jpg",
-        "timer": null,
-        "description": [
-          "器に盛り、お好みでパセリをふる。"
+        "actions": [
+          {
+            "image": "/1/step/5.jpg",
+            "timer": null,
+            "description": [
+              "器に盛り、お好みでパセリをふる。"
+            ]
+          }
         ]
       }
     ]

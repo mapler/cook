@@ -1,9 +1,0 @@
-{% extends 'base.html' %}
-{% block sub_title %}
-{% if error %}{{ error }}{% else %}エラーが発生しました{% endif %}
-{% endblock %}
-{% block content %}
-  <div class="container">
-    <h1>{% if error %}{{ error }}{% else %}エラーが発生しました{% endif %}</h1>
-  </div> <!-- /container -->
-{% endblock %}

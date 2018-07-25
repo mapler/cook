@@ -2,37 +2,34 @@
 {% block sub_title %}
 作り方
 {% endblock %}
+{% block script %}
+<script src="{{ url_for('static', filename='js/procedure.js') }}"></script>
+{% endblock %}
 {% block content %}
 <div class="container">
-  <div class="page-header">
+  <div class="py-3">
     <h4>ステップ {{ current_step }}/{{ max_step }}</h4>
     {% include "parts/progress.html" %}
-    <h4 class="">作り方</h4>
-  </div>
-  <div class="row">
-    <div class="col-sm my-auto">
-        <img class="img-responsive" src="{{ url_for('static', filename='images/recipes' + current_procedure.image) }}">
-      <table class="table table-bordered">
-        <tbody>
-        {% for desc in current_procedure.description %}
-        <tr><td>{{ desc }}</td></tr>
-        {% endfor %}
-        </tbody>
-      </table>
+    <h2>作り方</h2>
+    <hr>
+  <div class="row justify-content-md-center" id="procedure" data-step="{{ procedure.step }}" data-rid="{{ recipe.id }}">
+    {% for action in procedure.actions %}
+    <div class="col-sm-5 col-sm">
+      <div class="card actions h-100" id="action-{{ loop.index }}" data-timer="{{ action.timer if action.timer else ''}}">
+        <img class="card-img-top" src="{{ url_for('static', filename='images/recipes' + action.image) }}" alt="Card image cap">
+          <div class="card-img-overlay d-none" id="timer-block-action-{{ loop.index }}">
+            <h5 class="card-title text-center color text-white bg-light bg-transparent">Timer</h5>
+            <p class="display-3 text-center card-text text-white"><span id="timer"></span>s</p>
+          </div>
+        <div class="card-body">
+          {% for desc in action.description %}
+          <p class="card-text action-desc">{{ desc }}</p>
+          {% endfor %}
+        </div>
+      </div>
     </div>
-    <div class="col-sm my-auto">
-        <img class="img-responsive" src="{{ url_for('static', filename='images/recipes' + next_procedure.image) }}">
-      <table class="table table-bordered">
-        <tbody>
-        {% for desc in next_procedure.description %}
-          <tr><td>{{ desc }}</td></tr>
-        {% endfor %}
-        </tbody>
-      </table>
-    </div>
+    {% endfor %}
   </div>
-  <div class="row center-block">
-    <a href="{{ url_for('procedure', step_id=current_step, rid=recipe.id) }}" class="btn btn-primary text-center">次へ (debug)</a>
-  </div>
-</div><!--/container -->
+  {% include 'parts/button.html' %}
+</div>
 {% endblock %}

@@ -25,11 +25,20 @@ class RecipeIngredient(NamedTuple):
         return ingredients[self.iid]
 
 
-class Procedure(NamedTuple):
-    step: int
+class Action(NamedTuple):
     image: str
     timer: Optional[int]
     description: List[str]
+
+
+class Procedure(NamedTuple):
+    step: int
+    actions: List[Action]
+
+    @classmethod
+    def load(cls, d):
+        d['actions'] = [Action(**data) for data in d['actions']]
+        return cls(**d)
 
 
 class Recipe(NamedTuple):
@@ -44,7 +53,7 @@ class Recipe(NamedTuple):
     @classmethod
     def load(cls, d):
         d['ingredients'] = [RecipeIngredient(**data) for data in d['ingredients']]
-        d['procedures'] = [Procedure(**data) for data in d['procedures']]
+        d['procedures'] = [Procedure.load(data) for data in d['procedures']]
         return cls(**d)
 
 

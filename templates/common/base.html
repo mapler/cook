@@ -17,9 +17,8 @@
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/speech.js') }}"></script>
     <script src="{{ url_for('static', filename='js/control.js') }}"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+    <link  href="{{ url_for('static', filename='css/fontawesome.css') }}" rel="stylesheet" type='text/css'>
     <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
-    <link  href="{{ url_for('static', filename='css/font-awesome.min.css') }}" rel="stylesheet" type='text/css'>
     {% block style %}
     {% endblock %}
     {% block script %}
@@ -33,9 +32,6 @@
     {% block content %}
     {% endblock %}
     {% block footer %}
-    {% include 'common/footer.html' %}
     {% endblock %}
-    <!-- Latest compiled and minified JavaScript -->
-
   </body>
 </html>

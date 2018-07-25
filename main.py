@@ -1,5 +1,5 @@
 from threading import Lock
-from flask import Flask, render_template, make_response, Response
+from flask import Flask, render_template, request, Response
 from flask_socketio import SocketIO
 from models import recipes
 app = Flask(__name__)
@@ -17,6 +17,12 @@ def get_weight():
         socketio.sleep(0.5)
         import random
         socketio.emit('weight', random.randint(5, 100))
+
+
+def set_timer_task(timer):
+    for i in range(timer, -1, -1):
+        socketio.emit('timer', i)
+        socketio.sleep(1)
 
 
 @app.route('/')
@@ -43,16 +49,11 @@ def ingredient(rid: int):
 def procedure(rid: int, step_id: int):
     recipe = recipes.get(rid)
     current_procedure = recipe.procedures[step_id - 1]
-    try:
-        next_procedure = recipe.procedures[step_id]
-    except IndexError:
-        next_procedure = None
     context = dict(
         current_step=step_id + 1,
         max_step=1 + len(recipe.procedures),
         recipe=recipes.get(rid),
-        current_procedure=current_procedure,
-        next_procedure=next_procedure
+        procedure=current_procedure,
     )
     return render_template('procedure.html', **context)
 
@@ -69,8 +70,33 @@ def reset():
     return 'ok'
 
 
+@app.route('/debug/weight/<weight>')
+def debug_weight(weight: str):
+    if app.debug:
+        weight = int(weight)
+        import random
+        for i in range(10):
+            socketio.emit('weight', random.randint(max(0, weight - 10), weight + 10))
+            socketio.sleep(0.25)
+    return 'ok'
+
+
+@app.route('/timer', methods=['POST'])
+def set_timer():
+    timer = request.form['timer']
+    timer = int(timer)
+    global thread
+    with thread_lock:
+        if thread is None:
+            thread = socketio.start_background_task(
+                target=set_timer_task, **dict(timer=timer))
+    return 'ok'
+
+
 @socketio.on('connect')
-def test_connect():
+def on_connect():
+    if app.debug:
+        return
     global thread
     with thread_lock:
         if thread is None:
