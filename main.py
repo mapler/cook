@@ -1,7 +1,8 @@
 from threading import Lock
-from flask import Flask, render_template, request, Response
+from flask import Flask, render_template, request
 from flask_socketio import SocketIO
 from models import recipes
+from device import get_weight
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'secret!'
@@ -12,11 +13,16 @@ thread = None
 thread_lock = Lock()
 
 
-def get_weight():
+def get_weight_socketio():
+    weight = 0
     while True:
         socketio.sleep(0.5)
-        import random
-        socketio.emit('weight', random.randint(5, 100))
+        if app.debug:
+            import random
+            weight = random.randint(5, 100)
+        else:
+            weight = get_weight() or weight
+        socketio.emit('weight', weight)
 
 
 def set_timer_task(timer):
