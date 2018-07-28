@@ -2,38 +2,45 @@ import json
 from typing import NamedTuple, List, Optional
 
 
-class Ingredient(NamedTuple):
-    iid: int
-    name: str
-    unit: Optional[str]
-    image: str
+class Ingredient:
+
+    def __init__(self, iid, name, image, unit=None):
+        self.iid = iid
+        self.name = name
+        self.image = image
+        self.unit = unit
 
 
 with open('./data/ingredient.json') as f:
     ingredients = {data['iid']: Ingredient(**data) for data in json.load(f)}
 
 
-class RecipeIngredient(NamedTuple):
+class RecipeIngredient:
 
-    iid: int
-    count: Optional[int]
-    weight: Optional[int]
-    comment: Optional[str]
+    def __init__(self, iid, count=None, weight=None, comment=None):
+        self.iid = iid
+        self.count = count
+        self.weight = weight
+        self.comment = comment
 
     @property
     def ingredient(self):
         return ingredients[self.iid]
 
 
-class Action(NamedTuple):
-    image: str
-    timer: Optional[int]
-    description: List[str]
+class Action:
+
+    def __init__(self, image, timer=None, description=None):
+        self.image = image
+        self.timer = timer
+        self.description = description
 
 
-class Procedure(NamedTuple):
-    step: int
-    actions: List[Action]
+class Procedure:
+
+    def __init__(self, step, actions=None):
+        self.step = step
+        self.actions = actions
 
     @classmethod
     def load(cls, d):
@@ -41,14 +48,16 @@ class Procedure(NamedTuple):
         return cls(**d)
 
 
-class Recipe(NamedTuple):
-    id: int
-    name: str
-    level: int
-    image_url: str
-    ingredient_image: str
-    ingredients: RecipeIngredient
-    procedures: List[Procedure]
+class Recipe:
+
+    def __init__(self, id, name, level, image_url, ingredient_image, ingredients, procedures):
+        self.id = id
+        self.name = name
+        self.level = level
+        self.image_url = image_url
+        self.ingredient_image = ingredient_image
+        self.ingredients = ingredients
+        self.procedures = procedures
 
     @classmethod
     def load(cls, d):
