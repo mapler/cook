@@ -8,7 +8,6 @@ $(document).ready(function() {
     socket.on('weight', function(weight) {
       $('#weight').text(weight);
       var targetWeight = $('#target-weight').text();
-      console.log(targetWeight);
       if (!isNaN(parseInt(targetWeight))) {
         if (Math.abs(weight - targetWeight) <= 10) {
             weightStableCount ++;
@@ -21,6 +20,10 @@ $(document).ready(function() {
       };
     });
     socket.on('next-btn', function() {
+      if (isDisableNextBtn()) {
+	    console.log('next-btn is disabled');
+	    return;
+      };
       console.log('next-btn is pushed ' + currentIdx);
       // stop unfinished speech
       stopSpeech();

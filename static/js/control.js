@@ -9,3 +9,7 @@ function disableNextBtn() {
   $('#next-btn').prop("disabled", true);
   $('#next-btn').addClass("btn-secondary");
 };
+
+function isDisableNextBtn() {
+  return $('#next-btn').hasClass("btn-secondary");
+};

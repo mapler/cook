@@ -8,7 +8,7 @@ $(document).ready(function() {
     enableNextBtn();
     socket.on('timer', function(timer) {
       $('#timer').text(timer);
-      console.log(timer);
+      console.log("timer: " + timer);
       if (timer == 0) {
          enableNextBtn();
       } else {
@@ -20,11 +20,14 @@ $(document).ready(function() {
       };
     });
     socket.on('next-btn', function() {
+      if (isDisableNextBtn()) {
+	    console.log('next-btn is disabled');
+	    return;
+      };
       console.log('next-btn is pushed ' + currentIdx);
       // stop unfinished speech
       stopSpeech();
       // reset weight stable counter
-      console.log(actions[currentIdx]);
       if (actions[currentIdx] != null) {
         var action = actions[currentIdx];
         var timer = $("#" + action.id).data("timer");
