@@ -1,12 +1,10 @@
 function speech(text) {
-    var ssu = new SpeechSynthesisUtterance();
-    ssu.text = text;
-    ssu.lang = 'ja-JP';
-    speechSynthesis.speak(ssu);
-    console.log("Said: " + text);
+    $.post("/speech", {"content": text});
+    console.log("said: " + text);
 };
 
 
 function stopSpeech() {
-    speechSynthesis.cancel();
-}
+    $.post("/speech", {"content": ':STOP:'});
+    console.log("stop speech");
+};

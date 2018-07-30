@@ -1,5 +1,5 @@
 from threading import Lock
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from flask_socketio import SocketIO
 from models import recipes
 from device import init_hx711, get_weight, get_next_btn
@@ -32,9 +32,9 @@ def get_next_btn_socketio():
     if app.debug:
         return
     while True:
-        socketio.sleep(0.1)
         if get_next_btn():
             socketio.emit('next-btn')
+            socketio.sleep(1)
 
 
 def set_timer_task(timer):
@@ -66,6 +66,8 @@ def ingredient(rid: int):
 @app.route('/recipe/<int:rid>/procedures/<int:step_id>')
 def procedure(rid: int, step_id: int):
     recipe = recipes.get(rid)
+    if step_id > len(recipe.procedures):
+        return redirect(url_for('top'))
     current_procedure = recipe.procedures[step_id - 1]
     context = dict(
         current_step=step_id + 1,
@@ -103,11 +105,22 @@ def debug_weight(weight: str):
 def set_timer():
     timer = request.form['timer']
     timer = int(timer)
-    global thread
     with thread_lock:
-        if thread is None:
-            thread = socketio.start_background_task(
-                target=set_timer_task, **dict(timer=timer))
+        socketio.start_background_task(
+            target=set_timer_task, **dict(timer=timer))
+    return 'ok'
+
+
+@app.route('/speech', methods=['POST'])
+def speech():
+    import os
+    content = request.form['content']
+    if content != ":STOP:":
+        print('say {}'.format(content))
+        os.system("./AquesTalkPi '{}'| aplay".format(content))
+    else:
+        print('stop speech')
+        os.system("pkill -f aplay")
     return 'ok'
 
 
