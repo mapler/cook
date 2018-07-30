@@ -1,31 +1,16 @@
 import json
-from typing import NamedTuple, List, Optional
 
 
 class Ingredient:
 
-    def __init__(self, iid, name, image, unit=None):
+    def __init__(self, iid, name, image, unit=None, count=None, weight=None, comment=None):
         self.iid = iid
         self.name = name
         self.image = image
         self.unit = unit
-
-
-with open('./data/ingredient.json') as f:
-    ingredients = {data['iid']: Ingredient(**data) for data in json.load(f)}
-
-
-class RecipeIngredient:
-
-    def __init__(self, iid, count=None, weight=None, comment=None):
-        self.iid = iid
         self.count = count
         self.weight = weight
         self.comment = comment
-
-    @property
-    def ingredient(self):
-        return ingredients[self.iid]
 
 
 class Action:
@@ -61,7 +46,7 @@ class Recipe:
 
     @classmethod
     def load(cls, d):
-        d['ingredients'] = [RecipeIngredient(**data) for data in d['ingredients']]
+        d['ingredients'] = [Ingredient(**data) for data in d['ingredients']]
         d['procedures'] = [Procedure.load(data) for data in d['procedures']]
         return cls(**d)
 

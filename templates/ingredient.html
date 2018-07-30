@@ -30,9 +30,9 @@
         <table class="table table-bordered table-sm">
           <tbody>
           {% for ri in recipe.ingredients %}
-            <tr id="ri-{{ loop.index }}" class="ri-element" data-name="{{ ri.ingredient.name }}" data-weight="{{ ri.weight if ri.weight else '' }}">
-              <td>{{ ri.ingredient.name }}</td>
-              <td>{% if ri.weight or ri.count %}{{ ri.weight or ri.count }}{{ ri.ingredient.unit or 'g' }}{% endif %}</td>
+            <tr id="ri-{{ loop.index }}" class="ri-element" data-name="{{ ri.name }}" data-weight="{{ ri.weight if ri.weight else '' }}">
+              <td>{{ ri.name }}</td>
+              <td>{% if ri.weight or ri.count %}{{ ri.weight or ri.count }}{{ ri.unit or 'g' }}{% endif %}</td>
               <td>{{ ri.comment or '' }}</td>
             </tr>
           {% endfor %}
