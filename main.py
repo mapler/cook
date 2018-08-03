@@ -2,14 +2,13 @@ from threading import Lock
 from flask import Flask, render_template, request, redirect, url_for
 from flask_socketio import SocketIO
 from models import recipes
-from device import init_hx711, get_weight, get_next_btn
+from device import Device
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app)
 
-hx711 = init_hx711()
-
+device = Device(debug=app.debug)
 
 thread = None
 thread_lock = Lock()
@@ -23,7 +22,7 @@ def get_weight_socketio():
             import random
             weight = random.randint(5, 100)
         else:
-            new_weight = get_weight(hx711)
+            new_weight = device.get_weight()
             weight = new_weight if new_weight is not None else weight
         socketio.emit('weight', weight)
 
@@ -32,7 +31,7 @@ def get_next_btn_socketio():
     if app.debug:
         return
     while True:
-        if get_next_btn():
+        if device.get_next_btn():
             socketio.emit('next-btn')
             socketio.sleep(1)
 
