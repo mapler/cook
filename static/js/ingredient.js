@@ -5,14 +5,28 @@ $(document).ready(function() {
     var currentIdx = 0
     var lastIdx = -1
     var weightStableCount = 0
+    var weightStable = false
     socket.on('weight', function(weight) {
+      console.log(weight);
+      if (weight < 0) {
+        if (weight < -2) {
+          $('#weight').addClass("text-danger");
+        }
+        weight = 0;
+      } else {
+        $('#weight').removeClass('text-danger')
+      }
       $('#weight').text(weight);
       var targetWeight = $('#target-weight').text();
       if (!isNaN(parseInt(targetWeight))) {
-        if (Math.abs(weight - targetWeight) <= 10) {
+        if (Math.abs(weight - targetWeight) <= Math.max(2, targetWeight * 0.1)) {
             weightStableCount ++;
             if (weightStableCount > 5) {
                enableNextBtn();
+               if (weightStable == false) {
+                 speech(targetWeight + "になりました。次のボタンを押してください。");
+                 weightStable = true;
+               };
             }
           } else {
                disableNextBtn();
@@ -41,6 +55,7 @@ $(document).ready(function() {
           $('#weight-slash').text("/");
           $('#target-weight').text(element.data("weight"));
           disableNextBtn();
+          weightStable = false;
         } else {
           speech(element.data("name") + "を用意してください");
           $('#weight-slash').text("");

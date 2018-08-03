@@ -28,7 +28,7 @@ class Device:
                 if GPIO.input(RESET_BTN_PIN) == 0:
                     self.hx711.zero(5)
                 weight = self.hx711.get_weight_mean(5)
-                return max(0, int(weight))
+                return int(weight)
             except:
                 pass
         else:

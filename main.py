@@ -18,12 +18,8 @@ def get_weight_socketio():
     weight = 0
     while True:
         socketio.sleep(0.2)
-        if app.debug:
-            import random
-            weight = random.randint(5, 100)
-        else:
-            new_weight = device.get_weight()
-            weight = new_weight if new_weight is not None else weight
+        new_weight = device.get_weight()
+        weight = new_weight if new_weight is not None else weight
         socketio.emit('weight', weight)
 
 
@@ -95,7 +91,7 @@ def debug_weight(weight: str):
         weight = int(weight)
         import random
         for i in range(10):
-            socketio.emit('weight', random.randint(max(0, weight - 10), weight + 10))
+            socketio.emit('weight', random.randint(weight - 4, weight + 4))
             socketio.sleep(0.25)
     return 'ok'
 
