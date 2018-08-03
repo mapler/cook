@@ -27,7 +27,7 @@
     <div class="col-sm">
       <h4 class="text-center">材料一覧 (1人分)</h4>
       <div>
-        <table class="table table-bordered table-sm">
+        <table id='ri-table' data-rid="{{ recipe.id }}" class="table table-bordered table-sm">
           <tbody>
           {% for ri in recipe.ingredients %}
             <tr id="ri-{{ loop.index }}" class="ri-element" data-name="{{ ri.name }}" data-weight="{{ ri.weight if ri.weight else '' }}">

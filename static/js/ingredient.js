@@ -55,7 +55,8 @@ $(document).ready(function() {
         lastIdx = currentIdx;
         currentIdx ++;
       } else if (currentIdx == riElementNum) {
-        window.location.href = "/recipe/1/procedures/1";
+        console.log("/recipe/" + $("#ri-table").data("rid") + "/procedures/1");
+        window.location.href = "/recipe/" + $("#ri-table").data("rid") + "/procedures/1";
       }
     });
     socket.on('reset-btn', function() {

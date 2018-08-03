@@ -6,27 +6,15 @@ Top
 <div class="container">
   <h1 class="text-center">レシピを選びましょう</h1>
   <hr>
-  <div class="card-deck">
+  <div class="row justify-content-md-center">
   {% for rid, recipe in recipes.items() %}
-    <div class="card">
-      <img class="card-img-top" src="{{ url_for('static', filename='images/recipes' + recipe.image_url) }}">
-      <div class="card-body">
-        <h5 class="card-title">{{ recipe.name }}</h5>
-        <a href="{{ url_for('ingredient', rid=rid) }}" class="btn btn-primary">作りましょう</a>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card-img-top" src="{{ url_for('static', filename='images/recipes' + recipe.image_url) }}">
-      <div class="card-body">
-        <h5 class="card-title">{{ recipe.name }}</h5>
-        <a href="{{ url_for('ingredient', rid=rid) }}" class="btn btn-primary">作りましょう</a>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card-img-top" src="{{ url_for('static', filename='images/recipes' + recipe.image_url) }}">
-      <div class="card-body">
-        <h5 class="card-title">{{ recipe.name }}</h5>
-        <a href="{{ url_for('ingredient', rid=rid) }}" class="btn btn-primary">作りましょう</a>
+    <div class="col-sm-3 col-sm">
+      <div class="card actions h-100">
+        <img class="card-img-top" src="{{ url_for('static', filename='images/recipes' + recipe.image_url) }}">
+        <div class="card-body">
+          <h5 class="card-title">{{ recipe.name }}</h5>
+          <a href="{{ url_for('ingredient', rid=rid) }}" class="btn btn-primary">作りましょう</a>
+        </div>
       </div>
     </div>
   {% endfor %}
