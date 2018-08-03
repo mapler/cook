@@ -13,7 +13,7 @@
         "image": "/ingredient/1.jpg",
         "count": null,
         "comment": null,
-        "weight": 100
+        "weight": 1000
       },
       {
         "iid": 2,
@@ -31,7 +31,7 @@
         "image": "/ingredient/3.jpg",
         "count": null,
         "comment": null,
-        "weight": 150
+        "weight": 200
       },
       {
         "iid": 4,
@@ -49,7 +49,7 @@
         "image": "/ingredient/5.jpg",
         "count": 1,
         "comment": "みじん切り、または薄切り",
-        "weight": 30
+        "weight": 5
       },
       {
         "iid": 6,
@@ -96,7 +96,7 @@
         "actions": [
           {
             "image": "/1/step/2.jpg",
-            "timer": 10,
+            "timer": 20,
             "description": [
               "パスタを茹でる。"
             ]
@@ -133,6 +133,323 @@
             "timer": null,
             "description": [
               "器に盛り、お好みでパセリをふる。"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "チンジャオロース",
+    "level": 1,
+    "image_url": "/2/description.jpg",
+    "ingredient_image": "/2/ingredient.jpg",
+    "ingredients": [
+      {
+        "iid": 1,
+        "name": "牛肉(豚肉)",
+        "unit": null,
+        "image": "/ingredient/1.jpg",
+        "count": null,
+        "comment": null,
+        "weight": 200
+      },
+      {
+        "iid": 2,
+        "name": "日清クッキングフラワー（小麦粉）",
+        "unit": null,
+        "image": "/ingredient/2.jpg",
+        "count": null,
+        "comment": "二、三振り(2g)",
+        "weight": null
+      },
+      {
+        "iid": 3,
+        "name": "ピーマン",
+        "unit": null,
+        "image": "/ingredient/3.jpg",
+        "count": null,
+        "comment": "三四個",
+        "weight": 154
+      },
+      {
+        "iid": 4,
+        "name": "サラダ油",
+        "unit": null,
+        "image": "/ingredient/4.jpg",
+        "count": null,
+        "comment": "少々",
+        "weight": null
+      },
+      {
+        "iid": 6,
+        "count": null,
+        "name": "ごま油",
+        "unit": null,
+        "image": "/ingredient/6.jpg",
+        "comment": "大匙",
+        "weight": null
+      }
+    ],
+    "procedures": [
+      {
+        "step": 1,
+        "actions": [{
+          "image": "/2/step/1.jpg",
+          "timer": null,
+          "description": [
+            "肉に日清クッキングフラワー(小麦粉)を振る"
+          ]
+        }]
+      },
+      {
+        "step": 2,
+        "actions": [
+          {
+            "image": "/2/step/2.jpg",
+            "timer": null,
+            "description": [
+              "ピーマンはヘタと種を取り、細切りにする"
+            ]
+          }
+        ]
+      },
+      {
+        "step": 3,
+        "actions": [
+          {
+            "image": "/2/step/3.jpg",
+            "timer": null,
+            "description": [
+              "フライパンにサラダ油を敷き、",
+              "中強火で肉を炒める"
+            ]
+          }
+        ]
+      },
+      {
+        "step": 4,
+        "actions": [
+          {
+            "image": "/2/step/4.jpg",
+            "timer": null,
+            "description": [
+              "肉に半分火が通ったら、ピーマンを炒める。",
+              "ピーマンが半分ぐらい火が通ったら、",
+              "※印の調味料を入れ、絡めながら炒める。"
+            ]
+          }
+        ]
+      },
+      {
+        "step": 5,
+        "actions": [
+          {
+            "image": "/2/step/5.jpg",
+            "timer": null,
+            "description": [
+              "最後に、ごま油を回し入れ、全体に絡めて、出来上がり"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "肉じゃが",
+    "level": 3,
+    "image_url": "/3/description.jpg",
+    "ingredient_image": "/3/ingredient.jpg",
+    "ingredients": [
+      {
+        "iid": 1,
+        "name": "牛肉(豚肉)",
+        "unit": null,
+        "image": "/ingredient/1.jpg",
+        "count": null,
+        "comment": null,
+        "weight": 200
+      },
+      {
+        "iid": 2,
+        "name": "じゃがいも",
+        "unit": null,
+        "image": "/ingredient/2.jpg",
+        "count": null,
+        "comment": "2 - 3個",
+        "weight": 236
+      },
+      {
+        "iid": 3,
+        "name": "玉ねぎ",
+        "unit": null,
+        "image": "/ingredient/3.jpg",
+        "count": null,
+        "comment": "1個",
+        "weight": 208
+      },
+      {
+        "iid": 4,
+        "name": "にんじん",
+        "unit": null,
+        "image": "/ingredient/4.jpg",
+        "count": null,
+        "comment": "1本",
+        "weight": 158
+      },
+      {
+        "iid": 4,
+        "name": "砂糖",
+        "unit": null,
+        "image": "/ingredient/4.jpg",
+        "count": null,
+        "comment": "",
+        "weight": null
+      },
+      {
+        "iid": 4,
+        "name": "みりん",
+        "unit": null,
+        "image": "/ingredient/4.jpg",
+        "count": null,
+        "comment": "",
+        "weight": null
+      },
+      {
+        "iid": 4,
+        "name": "酒",
+        "unit": null,
+        "image": "/ingredient/4.jpg",
+        "count": null,
+        "comment": "",
+        "weight": null
+      },
+      {
+        "iid": 6,
+        "count": null,
+        "name": "だし汁",
+        "unit": null,
+        "image": "/ingredient/6.jpg",
+        "comment": "300ml",
+        "weight": 300
+      },
+      {
+        "iid": 6,
+        "count": null,
+        "name": "しょうゆ",
+        "unit": null,
+        "image": "/ingredient/6.jpg",
+        "comment": "",
+        "weight": null
+      }
+    ],
+    "procedures": [
+      {
+        "step": 1,
+        "actions": [{
+          "image": "/3/step/1.jpg",
+          "timer": null,
+          "description": [
+            "じゃがいもは食べやすい大きさ切って水にさらす",
+            "玉ねぎ、にんじん、肉も切る"
+          ]
+        }]
+      },
+      {
+        "step": 2,
+        "actions": [
+          {
+            "image": "/3/step/2.jpg",
+            "timer": null,
+            "description": [
+              "鍋に油大さじ1をひき、じゃがいも、玉ねぎ、人参を炒める"
+            ]
+          }
+        ]
+      },
+      {
+        "step": 3,
+        "actions": [
+          {
+            "image": "/3/step/3.jpg",
+            "timer": null,
+            "description": [
+              "じゃがいもの表面が透き通るまで炒める"
+            ]
+          }
+        ]
+      },
+      {
+        "step": 4,
+        "actions": [
+          {
+            "image": "/3/step/4.jpg",
+            "timer": 20,
+            "description": [
+              "調味料を加えて中火で5分煮る"
+            ]
+          }
+        ]
+      },
+      {
+        "step": 5,
+        "actions": [
+          {
+            "image": "/3/step/5.jpg",
+            "timer": null,
+            "description": [
+              "５分経ったら醤油を加えて"
+            ]
+          }
+        ]
+      },
+      {
+        "step": 6,
+        "actions": [
+          {
+            "image": "/3/step/6.jpg",
+            "timer": null,
+            "description": [
+              "肉を入れて、よくほぐしてあくを取る"
+            ]
+          }
+        ]
+      },
+      {
+        "step": 7,
+        "actions": [
+          {
+            "image": "/3/step/7.jpg",
+            "timer": 20,
+            "description": [
+              "肉に重ならないように白滝を入れて",
+              "弱めの中火で15分煮る"
+            ]
+          }
+        ]
+      },
+      {
+        "step": 8,
+        "actions": [
+          {
+            "image": "/3/step/8.jpg",
+            "timer": null,
+            "description": [
+              "じゃがいもが柔らかくなり、煮汁が少なくなったら火を止めて"
+            ]
+          }
+        ]
+      },
+      {
+        "step": 9,
+        "actions": [
+          {
+            "image": "/3/step/9.jpg",
+            "timer": null,
+            "description": [
+              "出来上がり"
             ]
           }
         ]
