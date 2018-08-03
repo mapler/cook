@@ -10,6 +10,7 @@ $(document).ready(function() {
       $('#timer').text(timer);
       console.log("timer: " + timer);
       if (timer == 0) {
+         speech("時間になりました。次のボタンを押してください。");
          enableNextBtn();
       } else {
         if (currentIdx != actionNum) {

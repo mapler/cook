@@ -364,7 +364,7 @@
             "image": "/3/step/2.jpg",
             "timer": null,
             "description": [
-              "鍋に油大さじ1をひき、じゃがいも、玉ねぎ、人参を炒める"
+              "鍋に油大さじ1をひき、じゃがいも、玉ねぎ、人参をじゃがいもの表面が透き通るまで炒める。"
             ]
           }
         ]
@@ -373,10 +373,11 @@
         "step": 3,
         "actions": [
           {
-            "image": "/3/step/3.jpg",
-            "timer": null,
+            "image": "/3/step/2.jpg",
+            "timer": 10,
             "description": [
-              "じゃがいもの表面が透き通るまで炒める"
+              "調味料を加えて中火で5分煮る",
+              "５分経ったら醤油を加えて"
             ]
           }
         ]
@@ -385,10 +386,12 @@
         "step": 4,
         "actions": [
           {
-            "image": "/3/step/4.jpg",
-            "timer": 20,
+            "image": "/3/step/2.jpg",
+            "timer": 10,
             "description": [
-              "調味料を加えて中火で5分煮る"
+              "肉に重ならないように白滝を入れて",
+              "弱めの中火で15分煮る",
+              "じゃがいもが柔らかくなり、煮汁が少なくなったら火を止めて"
             ]
           }
         ]
@@ -397,56 +400,7 @@
         "step": 5,
         "actions": [
           {
-            "image": "/3/step/5.jpg",
-            "timer": null,
-            "description": [
-              "５分経ったら醤油を加えて"
-            ]
-          }
-        ]
-      },
-      {
-        "step": 6,
-        "actions": [
-          {
-            "image": "/3/step/6.jpg",
-            "timer": null,
-            "description": [
-              "肉を入れて、よくほぐしてあくを取る"
-            ]
-          }
-        ]
-      },
-      {
-        "step": 7,
-        "actions": [
-          {
-            "image": "/3/step/7.jpg",
-            "timer": 20,
-            "description": [
-              "肉に重ならないように白滝を入れて",
-              "弱めの中火で15分煮る"
-            ]
-          }
-        ]
-      },
-      {
-        "step": 8,
-        "actions": [
-          {
-            "image": "/3/step/8.jpg",
-            "timer": null,
-            "description": [
-              "じゃがいもが柔らかくなり、煮汁が少なくなったら火を止めて"
-            ]
-          }
-        ]
-      },
-      {
-        "step": 9,
-        "actions": [
-          {
-            "image": "/3/step/9.jpg",
+            "image": "/3/step/3.jpg",
             "timer": null,
             "description": [
               "出来上がり"
